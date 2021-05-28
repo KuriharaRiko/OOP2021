@@ -11,7 +11,6 @@ namespace Exercise1 {
         public string ArtistName { get; private set; }  // アーティスト名
         public int Length { get; private set; } // 演奏時間（秒）
 
-
         // コンストラクタ
         public Song(string title, string artistname, int length) {
             Title = title;

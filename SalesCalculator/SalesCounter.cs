@@ -11,18 +11,18 @@ namespace SalesCalculator {
         
         private List<Sale> _sales;
 
-        // コンストラクタあ
+        // コンストラクタ
         public SalesCounter(string filePath) {
             _sales = ReadSales(filePath);
         }
 
         // 売上データを読み込み、Saleオブジェクトのリストを返す
         private static List<Sale> ReadSales(string filePath) {
-            List<Sale> sales = new List<Sale>();
-            string[] lines = File.ReadAllLines(filePath);
+            var sales = new List<Sale>();
+            var lines = File.ReadAllLines(filePath);
             foreach (string line in lines) {
-                string[] items = line.Split(',');
-                Sale sale = new Sale {
+                var items = line.Split(',');
+                var sale = new Sale {
                     ShopName = items[0],
                     ProductCategory = items[1],
                     Amount = int.Parse(items[2])

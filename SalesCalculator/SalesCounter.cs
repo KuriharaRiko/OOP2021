@@ -11,7 +11,7 @@ namespace SalesCalculator {
         
         private List<Sale> _sales;
 
-        // コンストラクタ
+        // コンストラクタあ
         public SalesCounter(string filePath) {
             _sales = ReadSales(filePath);
         }

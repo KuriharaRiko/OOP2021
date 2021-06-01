@@ -20,7 +20,9 @@ namespace Exercise1 {
 
         // 2.1.4
         private static void PrintSongs(Song[] songs) {
-            
+            foreach (var song in songs) {
+                Console.WriteLine(@"{0},{1},{2:m\:ss}",song.Title,song.ArtistName,TimeSpan.FromSeconds( song.Length));
+            }
         }
 
     }

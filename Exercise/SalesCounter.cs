@@ -33,7 +33,7 @@ namespace Exercise3 {
             return sales;
         }
 
-        // 店舗別売上を求める
+        //  店舗別売上を求める
         public IDictionary<string, int> GetPerStoreSales() {
             var dict = new Dictionary<string, int>();
             foreach (var sale in _sales) {

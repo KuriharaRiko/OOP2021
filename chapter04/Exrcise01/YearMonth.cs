@@ -17,6 +17,7 @@ namespace Exrcise1 {
         }
 
         // 4.1.2
+        // 21世紀ならTrue（プロパティ）
         public bool Is21Century {
             get {
                 return 2001 <= Year && Year <= 2100;

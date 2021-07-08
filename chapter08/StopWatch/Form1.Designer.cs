@@ -26,84 +26,94 @@ namespace StopWatch {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.lbTimerDisp = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbLapDisp = new System.Windows.Forms.ListBox();
             this.btStart = new System.Windows.Forms.Button();
             this.btReset = new System.Windows.Forms.Button();
             this.btStop = new System.Windows.Forms.Button();
-            this.btRap = new System.Windows.Forms.Button();
+            this.btLap = new System.Windows.Forms.Button();
             this.tmDisp = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lbTimerDisp
             // 
-            this.lbTimerDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lbTimerDisp.BackColor = System.Drawing.Color.LightPink;
             this.lbTimerDisp.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbTimerDisp.Location = new System.Drawing.Point(29, 31);
             this.lbTimerDisp.Name = "lbTimerDisp";
-            this.lbTimerDisp.Size = new System.Drawing.Size(315, 51);
+            this.lbTimerDisp.Size = new System.Drawing.Size(317, 51);
             this.lbTimerDisp.TabIndex = 1;
             this.lbTimerDisp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // listBox1
+            // lbLapDisp
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(393, 31);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 88);
-            this.listBox1.TabIndex = 2;
+            this.lbLapDisp.BackColor = System.Drawing.Color.LightPink;
+            this.lbLapDisp.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbLapDisp.FormattingEnabled = true;
+            this.lbLapDisp.ItemHeight = 24;
+            this.lbLapDisp.Location = new System.Drawing.Point(352, 31);
+            this.lbLapDisp.Name = "lbLapDisp";
+            this.lbLapDisp.Size = new System.Drawing.Size(180, 220);
+            this.lbLapDisp.TabIndex = 2;
             // 
             // btStart
             // 
+            this.btStart.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btStart.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btStart.Location = new System.Drawing.Point(35, 108);
+            this.btStart.Location = new System.Drawing.Point(29, 93);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(125, 55);
+            this.btStart.Size = new System.Drawing.Size(141, 68);
             this.btStart.TabIndex = 3;
             this.btStart.Text = "スタート";
-            this.btStart.UseVisualStyleBackColor = true;
+            this.btStart.UseVisualStyleBackColor = false;
             this.btStart.Click += new System.EventHandler(this.btStart_Click);
             // 
             // btReset
             // 
+            this.btReset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btReset.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btReset.Location = new System.Drawing.Point(221, 108);
+            this.btReset.Location = new System.Drawing.Point(205, 93);
             this.btReset.Name = "btReset";
-            this.btReset.Size = new System.Drawing.Size(123, 55);
+            this.btReset.Size = new System.Drawing.Size(141, 68);
             this.btReset.TabIndex = 4;
             this.btReset.Text = "リセット";
-            this.btReset.UseVisualStyleBackColor = true;
+            this.btReset.UseVisualStyleBackColor = false;
+            this.btReset.Click += new System.EventHandler(this.btReset_Click);
             // 
             // btStop
             // 
+            this.btStop.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btStop.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btStop.Location = new System.Drawing.Point(35, 204);
+            this.btStop.Location = new System.Drawing.Point(29, 177);
             this.btStop.Name = "btStop";
-            this.btStop.Size = new System.Drawing.Size(125, 55);
+            this.btStop.Size = new System.Drawing.Size(141, 68);
             this.btStop.TabIndex = 5;
             this.btStop.Text = "ストップ";
-            this.btStop.UseVisualStyleBackColor = true;
+            this.btStop.UseVisualStyleBackColor = false;
+            this.btStop.Click += new System.EventHandler(this.btStop_Click);
             // 
-            // btRap
+            // btLap
             // 
-            this.btRap.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btRap.Location = new System.Drawing.Point(221, 204);
-            this.btRap.Name = "btRap";
-            this.btRap.Size = new System.Drawing.Size(125, 55);
-            this.btRap.TabIndex = 6;
-            this.btRap.Text = "ラップ→";
-            this.btRap.UseVisualStyleBackColor = true;
+            this.btLap.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btLap.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btLap.Location = new System.Drawing.Point(205, 177);
+            this.btLap.Name = "btLap";
+            this.btLap.Size = new System.Drawing.Size(141, 68);
+            this.btLap.TabIndex = 6;
+            this.btLap.Text = "ラップ";
+            this.btLap.UseVisualStyleBackColor = false;
+            this.btLap.Click += new System.EventHandler(this.btLap_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 310);
-            this.Controls.Add(this.btRap);
+            this.BackColor = System.Drawing.Color.Teal;
+            this.ClientSize = new System.Drawing.Size(551, 268);
+            this.Controls.Add(this.btLap);
             this.Controls.Add(this.btStop);
             this.Controls.Add(this.btReset);
             this.Controls.Add(this.btStart);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbLapDisp);
             this.Controls.Add(this.lbTimerDisp);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -114,11 +124,11 @@ namespace StopWatch {
 
         #endregion
         private System.Windows.Forms.Label lbTimerDisp;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbLapDisp;
         private System.Windows.Forms.Button btStart;
         private System.Windows.Forms.Button btReset;
         private System.Windows.Forms.Button btStop;
-        private System.Windows.Forms.Button btRap;
+        private System.Windows.Forms.Button btLap;
         private System.Windows.Forms.Timer tmDisp;
     }
 }

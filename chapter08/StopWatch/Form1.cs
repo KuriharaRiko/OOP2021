@@ -24,13 +24,27 @@ namespace StopWatch {
         }
 
         private void TmDisp_Tick(object sender, EventArgs e) {
-            
+            lbTimerDisp.Text = sw.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }
 
         private void btStart_Click(object sender, EventArgs e) {
-            sw.Start();
-            tmDisp.Start();
+            sw.Start();     // ストップウォッチスタート
+            tmDisp.Start(); // 画面更新用のタイマースタート
+            
+        }
 
+        private void btStop_Click(object sender, EventArgs e) {
+            sw.Stop();
+            tmDisp.Stop();
+        }
+
+        private void btReset_Click(object sender, EventArgs e) {
+            sw.Reset();
+            lbTimerDisp.Text = sw.Elapsed.ToString(@"hh\:mm\:ss\.ff");
+        }
+
+        private void btLap_Click(object sender, EventArgs e) {
+            lbLapDisp.Items.Insert(0, sw.Elapsed.ToString(@"hh\:mm\:ss\.ff"));
         }
     }
 }

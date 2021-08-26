@@ -21,9 +21,8 @@ namespace Sample0823
             
             int num1 = int.Parse(Value.Text);   // 整数に変換
             int num2 = int.Parse(Jyou.Text);
-            int num3 = int.Parse(Result.Text);
 
-            num3 = num1 ^ num2;
+            Result.Text = Math.Pow(num1,num2).ToString();
         }
     }
 }

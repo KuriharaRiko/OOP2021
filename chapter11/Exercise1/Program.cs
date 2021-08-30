@@ -56,7 +56,7 @@ namespace Exercise1
             var sports = xdoc.Root.Elements()
                                   .Select(x => new
                                   {
-                                      Name = x.Element("name").Value
+                                      Name = x.Element("name").Value,
                                       Teammembers = x.Element("teammembers").Value
                                   })
                                   .OrderByDescending(x => int.Parse(x.Teammembers))

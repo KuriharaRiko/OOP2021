@@ -71,15 +71,20 @@ namespace Exercise1
 
         private static void Exercise1_4(string file)
         {
-            var newfile = "sports.xml";
+            var newfile = "sports.xml"; // 出力する新しいファイル
+            
+            // 追加先のxmlファイルを読み込む
+            var xdoc = XDocument.Load(file);
 
+            // 追加するデータ
             var element = new XElement("ballSports",
                             new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
                             new XElement("teammember", "11"),
-                            new XElement("firstplayed", "1873")
+                            new XElement("firstplayed", "1863")
                             );
-            var xdoc = XDocument.Load(newfile);
-            xdoc.Root.Add(element);
+            
+            xdoc.Root.Add(element); //追加先へ追加
+            xdoc.Save(newfile);
 
             // これ以降は確認用のコード
             foreach (var xsports in xdoc.Root.Elements())

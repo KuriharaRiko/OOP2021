@@ -12,6 +12,8 @@ namespace Section04
 {
     class Program
     {
+        
+
         static void Main(string[] args)
         {
             new Program();
@@ -20,16 +22,15 @@ namespace Section04
         // コンストラクタ
         public Program()
         {
-            // DownloadString();
-            // DownloadFileAsync();
-            //OpenReadSample();
-            var results = GetWeatherReportFromYahoo(4610);
+
+            var results = GetWeatherReportFromYahoo(4210);
             foreach (var s in results)
             {
                 Console.WriteLine(s);
             }
             Console.ReadLine(); // 入力待ち
         }
+
 
         // リスト14.15
         public void DownloadString()

@@ -17,6 +17,8 @@ namespace RssReader
 {
     public partial class Form1 : Form
     {
+
+        IEnumerable<ItemData> items = null;
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace RssReader
         {
             setRasTitle(tbUrl.Text);
 
-            リンク先のList[lbTitles.SelectedIndex];
+            //リンク先のList[lbTitles.SelectedIndex];
         }
 
         List<string> link = new List<string>();
@@ -34,7 +36,6 @@ namespace RssReader
         // 指定したURL先からXMLデータを取得しtitle要素を取得し、リストボックスへセットする
         private void setRasTitle(string uri)
         {
-            
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
@@ -42,15 +43,27 @@ namespace RssReader
                 var stream = wc.OpenRead(uri);
 
                 XDocument xdoc = XDocument.Load(stream);
-                var nodes = xdoc.Root.Descendants("title");
-                foreach (var node in nodes)
+
+                items = xdoc.Root.Descendants("item").Select(x => new　ItemData
                 {
-                    lbTitles.Items.Add(node.Value);
+                    Title = (string)x.Element("title"),
+                    Link = (string)x.Element("link"),
+                    PubDate = (DateTime)x.Element("pubDate"),
+                    Description = (string)x.Element("description")
+                });
+                foreach (var item in items)
+                {
+                    lbTitles.Items.Add(item.Title);
                     
                 }
-                link.Add(uri);
             }
-            
-        }   
+        }
+
+        // リストボックスクリックイベントハンドラ
+        private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string link = (items.ToArray())[lbTitles.SelectedIndex].Link;   // 配列へ変換して[]でアクセス
+            wbBrowser.Url = new Uri(link);
+        }
     }
 }

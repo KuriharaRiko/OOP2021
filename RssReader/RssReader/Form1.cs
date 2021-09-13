@@ -53,8 +53,7 @@ namespace RssReader
                 });
                 foreach (var item in items)
                 {
-                    lbTitles.Items.Add(item.Title);
-                    
+                    lbTitles.Items.Add(item.Title);   
                 }
             }
         }
@@ -63,7 +62,18 @@ namespace RssReader
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
             string link = (items.ToArray())[lbTitles.SelectedIndex].Link;   // 配列へ変換して[]でアクセス
-            wbBrowser.Url = new Uri(link);
+            //wbBrowser.Url = new Uri(link);
+
+            lbDescription.Text = "概要\n";
+            lbDescription.Text += (items.ToArray())[lbTitles.SelectedIndex].Description;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // 新しいFormへ表示するリンク先を渡す処理を追加
+            var wbForm = new Form2();
+            wbForm.Show();
+
         }
     }
 }

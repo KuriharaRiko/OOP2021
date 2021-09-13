@@ -32,8 +32,9 @@ namespace RssReader
             this.label1 = new System.Windows.Forms.Label();
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.lbTitles = new System.Windows.Forms.ListBox();
-            this.wbBrowser = new System.Windows.Forms.WebBrowser();
             this.btRead = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbDescription = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -64,15 +65,6 @@ namespace RssReader
             this.lbTitles.TabIndex = 2;
             this.lbTitles.SelectedIndexChanged += new System.EventHandler(this.lbTitles_SelectedIndexChanged);
             // 
-            // wbBrowser
-            // 
-            this.wbBrowser.Location = new System.Drawing.Point(222, 64);
-            this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbBrowser.Name = "wbBrowser";
-            this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(529, 499);
-            this.wbBrowser.TabIndex = 3;
-            // 
             // btRead
             // 
             this.btRead.Location = new System.Drawing.Point(662, 31);
@@ -83,13 +75,33 @@ namespace RssReader
             this.btRead.UseVisualStyleBackColor = true;
             this.btRead.Click += new System.EventHandler(this.btRead_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(607, 501);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 40);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "webの表示";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbDescription
+            // 
+            this.lbDescription.FormattingEnabled = true;
+            this.lbDescription.ItemHeight = 15;
+            this.lbDescription.Location = new System.Drawing.Point(222, 74);
+            this.lbDescription.Name = "lbDescription";
+            this.lbDescription.Size = new System.Drawing.Size(496, 364);
+            this.lbDescription.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 580);
+            this.Controls.Add(this.lbDescription);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btRead);
-            this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbTitles);
             this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.label1);
@@ -105,8 +117,9 @@ namespace RssReader
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.ListBox lbTitles;
-        private System.Windows.Forms.WebBrowser wbBrowser;
         private System.Windows.Forms.Button btRead;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox lbDescription;
     }
 }
 

@@ -14,16 +14,23 @@ namespace RssReader
     {
         Uri url;
 
-        // コンストラクタ
-        public Form2(string url)
+        public Form2()
         {
             InitializeComponent();
-            this.url = new Uri(url);
         }
+
+        //public Form2(string url)
+        //{
+        //    InitializeComponent();
+        //    this.url = new Uri(url);
+        //}
+
 
         private void Form2_Load(object sender, EventArgs e)
         {
             wbBrowser.Url = url;
         }
+
+        
     }
 }

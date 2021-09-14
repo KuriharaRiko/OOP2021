@@ -41,6 +41,7 @@ namespace RssReader
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.Size = new System.Drawing.Size(776, 388);
             this.wbBrowser.TabIndex = 0;
+
             // 
             // button1
             // 

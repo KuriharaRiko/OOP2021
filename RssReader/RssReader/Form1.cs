@@ -27,7 +27,7 @@ namespace RssReader
         private void btRead_Click(object sender, EventArgs e)
         {
             setRasTitle(tbUrl.Text);
-
+           
             //リンク先のList[lbTitles.SelectedIndex];
         }
 
@@ -41,9 +41,7 @@ namespace RssReader
                 wc.Headers.Add("Content-type", "charset=UTF-8");
 
                 var stream = wc.OpenRead(uri);
-
                 XDocument xdoc = XDocument.Load(stream);
-
                 items = xdoc.Root.Descendants("item").Select(x => new　ItemData
                 {
                     Title = (string)x.Element("title"),
@@ -59,7 +57,7 @@ namespace RssReader
         }
 
         // リストボックスクリックイベントハンドラ
-        private void lbTitles_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbTitles_Click(object sender, EventArgs e)
         {
             string link = (items.ToArray())[lbTitles.SelectedIndex].Link;   // 配列へ変換して[]でアクセス
             //wbBrowser.Url = new Uri(link);
@@ -73,7 +71,6 @@ namespace RssReader
             // 新しいFormへ表示するリンク先を渡す処理を追加
             var wbForm = new Form2();
             wbForm.Show();
-
         }
     }
 }

@@ -34,8 +34,15 @@ namespace SendMail
                 mailMessage.From = new MailAddress(settings.MailAddr);
                 // 宛先（To）
                 mailMessage.To.Add(tbTo.Text);
-                mailMessage.CC.Add(tbCc.Text);
-                mailMessage.Bcc.Add(tbBcc.Text);
+
+                if (tbCc.Text != " ")
+                {
+                    mailMessage.CC.Add(tbCc.Text);
+                }
+                if (tbBcc.Text != " ")
+                {
+                    mailMessage.Bcc.Add(tbBcc.Text);
+                }               
 
                 // 件名（タイトル）
                 mailMessage.Subject = tbTitle.Text;
@@ -46,19 +53,36 @@ namespace SendMail
                 SmtpClient smtpClient = new SmtpClient();
                 // メール送信のための認証情報を設定(ユーザー名、パスワード)
                 smtpClient.Credentials 
-                    = new NetworkCredential("ojsinfosys01@gmail.com", "Infosys2021");
-                smtpClient.Host = "smtp.gmail.com";
-                smtpClient.Port = 587;
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                    = new NetworkCredential(settings.MailAddr, settings.Pass);
+                smtpClient.Host = settings.Host;
+                smtpClient.Port = settings.Port;
+                smtpClient.EnableSsl = settings.Ssl;
+                // smtpClient.Send(mailMessage);
 
-                MessageBox.Show("送信完了");
+                // 送信完了のイベントハンドラの登録
+                smtpClient.SendCompleted += SmtpClient_SendCompleted;
+                string userState = "SendMail";
+                smtpClient.SendAsync(mailMessage, userState);
+
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        // 送信が完了すると呼ばれるコールバックメソッド
+        private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+            }
+            else
+            {
+                MessageBox.Show("送信完了");
+            }                      
         }
 
         private void btConfig_Click(object sender, EventArgs e)

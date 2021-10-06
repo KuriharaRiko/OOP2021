@@ -6,9 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SendMail
 {
@@ -22,6 +24,7 @@ namespace SendMail
         public Form1()
         {
             InitializeComponent();
+            configForm.ShowDialog();
         }
 
         private void btSend_Click(object sender, EventArgs e)
@@ -61,6 +64,7 @@ namespace SendMail
 
                 // 送信完了のイベントハンドラの登録
                 smtpClient.SendCompleted += SmtpClient_SendCompleted;
+
                 string userState = "SendMail";
                 smtpClient.SendAsync(mailMessage, userState);
 
@@ -88,6 +92,15 @@ namespace SendMail
         private void btConfig_Click(object sender, EventArgs e)
         {
             configForm.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            using(var reader = XmlReader.Create("mailsetting.xml"))
+            {
+                var serializer = new DataContractSerializer(typeof(Settings));
+                var readData = serializer.ReadObject(reader) as Settings;
+            }
         }
     }
 }

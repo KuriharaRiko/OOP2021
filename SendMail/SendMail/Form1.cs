@@ -20,14 +20,20 @@ namespace SendMail
         private ConfigForm configForm = new ConfigForm();
         // 設定情報
         private Settings settings = Settings.getInstance();
-
+        
         public Form1()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         private void btSend_Click(object sender, EventArgs e)
         {
+            if (!Settings.Set)
+            {
+                MessageBox.Show("メール送信情報を設定してください");
+                return;
+            }
+
             try
             {
                 // メール送信のためのインスタンスを作成
@@ -66,13 +72,18 @@ namespace SendMail
 
                 string userState = "SendMail";
                 smtpClient.SendAsync(mailMessage, userState);
-
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
+            if (tbTo.Text == " " && tbMessage.Text == " ")
+            {
+                MessageBox.Show("宛先もしは本文を書いてください", "エラー",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         // 送信が完了すると呼ばれるコールバックメソッド
@@ -95,18 +106,29 @@ namespace SendMail
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // XMLファイル読み込み（逆シリアル化）
-            using(var reader = XmlReader.Create("mailsetting.xml"))
+            // 起動時に送信情報が未設定の場合設定画面を表示する
+            if (Settings.Set)
             {
-                var serializer = new DataContractSerializer(typeof(Settings));
-                var readSettings = serializer.ReadObject(reader) as Settings;
-
-                settings.Host = readSettings.Host;
-                settings.Port = readSettings.Port;
-                settings.MailAddr = readSettings.MailAddr;
-                settings.Pass = readSettings.Pass;
-                settings.Ssl = readSettings.Ssl;
+                configForm.ShowDialog();
             }
         }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void 新規作成NToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Text = String.Empty;
+                }
+            }
+        }
+
+        
     }
 }

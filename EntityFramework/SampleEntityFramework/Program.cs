@@ -94,11 +94,8 @@ namespace SampleEntityFramework
                 foreach (var book in db.Books.OrderBy(b => b.Author.Name))
                 {
                     Console.WriteLine("{0} {1} {2}({3:yyy/MM/dd})",
-                    book.Title, 
-                    book.PublishedYear,
-                    book.Author.Name, 
-                    book.Author.Birthday
-                    );
+                                       book.Title, book.PublishedYear,
+                                       book.Author.Name, book.Author.Birthday);
                 }
             }     
         }
@@ -107,14 +104,15 @@ namespace SampleEntityFramework
         {
             using(var db = new BooksDbContext())  
             { 
-                var book = db.Books
-                              .Where(b => b.Title.Count() ==
-                                     db.Books.Max(x => x.Title.Count()));
-                foreach (var b in book)
+                var books = db.Books
+                              .Where(b => b.Title.Length ==
+                                     db.Books.Max(x => x.Title.Length));
+                foreach (var book in books)
                 {
-                    Console.WriteLine($"{b.Title}{b.PublishedYear}{b.Author}");
+                    Console.WriteLine("{0}{1}{2}({3:yyyy/MM/dd}))",
+                                       book.Title,book.PublishedYear,
+                                       book.Author.Name,book.Author.Birthday);
                 }
-                
             }               
         }
 
@@ -122,11 +120,12 @@ namespace SampleEntityFramework
         {
             using(var db = new BooksDbContext())
             {
-                var order = db.Books
-                               .OrderBy(b => b.PublishedYear);
-                foreach (var g in order)
+                var books = db.Books.OrderBy(b => b.PublishedYear).Take(3);
+                foreach (var book in books)
                 {
-                    Console.WriteLine($"{g.PublishedYear}{g.Author}");
+                    Console.WriteLine("{0}{1}{2}({3:yyyy/MM/dd}))",
+                                      book.Title, book.PublishedYear,
+                                      book.Author.Name, book.Author.Birthday);
                 }
                 
             }
@@ -136,12 +135,19 @@ namespace SampleEntityFramework
         {
             using(var db = new BooksDbContext())
             {
-                var groups = db.Books
-                               .GroupBy(b => b.Author)
-                               .Select(g => new
-                               {
-                                   Year = g.Key
-                               });
+                var authors = db.Authors
+                               .OrderByDescending(a => a.Birthday);
+                foreach (var author in authors)
+                {
+                    Console.WriteLine("{0}{1:yyyy/MM}", author.Name, author.Birthday);
+                    foreach (var book in author.Books)
+                    {
+                        Console.WriteLine("{0}{1}",
+                                           book.Title, book.PublishedYear,
+                                           book.Author.Name, book.Author.Birthday);
+                    }
+                    Console.WriteLine();
+                }
             }
         }
 

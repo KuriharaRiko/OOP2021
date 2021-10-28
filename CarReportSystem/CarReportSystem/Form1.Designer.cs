@@ -114,6 +114,7 @@ namespace CarReportSystem {
             this.pbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPicture.TabIndex = 3;
             this.pbPicture.TabStop = false;
+            this.pbPicture.Tag = "6";
             // 
             // label1
             // 
@@ -539,6 +540,7 @@ namespace CarReportSystem {
             this.carReportDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.carReportDataGridView.Size = new System.Drawing.Size(637, 269);
             this.carReportDataGridView.TabIndex = 22;
+            this.carReportDataGridView.SelectionChanged += new System.EventHandler(this.carReportDataGridView_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 

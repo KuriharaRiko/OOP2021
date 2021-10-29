@@ -215,9 +215,8 @@ namespace CarReportSystem
 
         private void fmMain_Load(object sender, EventArgs e)
         {
-            this.Validate();
-            this.carReportBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.infosys202123DataSet);
+            carReportDataGridView.Columns[0].Visible = false;
+            carReportDataGridView.Columns[0].HeaderText = "日付";
         }
 
         private void carReportDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -235,11 +234,8 @@ namespace CarReportSystem
             }
             catch (Exception)
             {
-
                 pbPicture.Image = null;
-            }
-            
-            
+            }         
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -255,6 +251,15 @@ namespace CarReportSystem
             ImageConverter imgconv = new ImageConverter();
             byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
             return b;
+        }
+
+        private void carReportDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (carReportDataGridView.CurrentRow == null)
+            {
+                
+            }
+            
         }
     }
 }

@@ -20,21 +20,62 @@ namespace NumberGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Random random = new Random();
+        private int answerNum;
+        private const int Rows = 5;     //行
+        private const int Columns = 5;  //列
+
+        private SolidColorBrush selectedButtonColor = new SolidColorBrush(Colors.LightBlue);
+        private SolidColorBrush hitButtonColor = new SolidColorBrush(Colors.Red);
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        //ロード時に一度だけ実行される
+        private void MainDisp_Loaded(object sender, RoutedEventArgs e)
         {
-            Button bt1 = e.Source as Button;
-            bt1.Background = Brushes.Aqua;
+            List<Button> buttons = new List<Button>();
+            //正解を取得
+            answerNum = random.Next(Rows * Columns) + 1;
 
-            if (bt1 == seikai)
+            //行
+            for (int i = 0; i < Rows; i++)
             {
-                TextBlock tb = ;
-                break;
+                grid.RowDefinitions.Add(new RowDefinition());
             }
+
+            //列
+            for (int j = 0; j < Columns; j++)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    var bt = new Button();
+                    bt.Width = MainForm.Width / Columns;
+                    bt.Height = MainForm.Height / Rows;
+                    bt.Content = j + 1;
+                    bt.FontSize = 20;
+                    bt.Click += Bt_Click;
+                    Grid.SetRow(bt, i);
+                    Grid.SetColumn(bt, j);
+                    buttons.Add(bt);
+                }
+            }
+            buttons.ForEach(bt => grid.Children.Add(bt));
+            MainForm.Height += textDisp.Height + 50;
+
+        }
+
+        private void Bt_Click(object sender, RoutedEventArgs e)
+        {
+            Button selectedButton = (Button)sender;
+            int num = (int)selectedButton.Content;
         }
     }
 }

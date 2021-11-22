@@ -136,7 +136,6 @@ namespace CarReportSystem
         {
             // TODO: このコード行はデータを 'infosys202123DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableAdapter.Fill(this.infosys202123DataSet.CarReport);
-
         }
 
         private void fmMain_Load(object sender, EventArgs e)

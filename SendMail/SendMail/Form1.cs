@@ -47,6 +47,7 @@ namespace SendMail
                 {
                     mailMessage.CC.Add(tbCc.Text);
                 }
+                
                 if (tbBcc.Text != " ")
                 {
                     mailMessage.Bcc.Add(tbBcc.Text);
@@ -82,9 +83,10 @@ namespace SendMail
             {
                 MessageBox.Show("宛先もしは本文を書いてください", "エラー",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            }           
         }
+
+        
 
         // 送信が完了すると呼ばれるコールバックメソッド
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
@@ -93,10 +95,19 @@ namespace SendMail
             {
                 MessageBox.Show(e.Error.Message);
             }
+            
             else
             {
                 MessageBox.Show("送信完了");
-            }                      
+            }
+
+            foreach (var c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Text = String.Empty;
+                }
+            }
         }
 
         private void btConfig_Click(object sender, EventArgs e)

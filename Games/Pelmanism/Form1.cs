@@ -176,10 +176,12 @@ namespace Pelmanism
                 card.Close();
             }
             buttonStart.Enabled = false; //スタートボタン選択不可
-            gameSec = 0;
+            gameSec = 6;
             timer1.Start();
 
             labelGuidance.Text = "クリックしてカードめくってください。";
+
+
         }
 
         /// <summary>
@@ -202,8 +204,16 @@ namespace Pelmanism
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            gameSec++;
-            labelSec.Text = gameSec + "秒経過";
+            gameSec--;
+            labelSec.Text = "残り" + gameSec + "秒";
+        }
+
+        private void Count_down(object sender, EventArgs e)
+        {
+            if (gameSec == 0)
+            {
+                timer1.Stop();
+            }
         }
     }
 }

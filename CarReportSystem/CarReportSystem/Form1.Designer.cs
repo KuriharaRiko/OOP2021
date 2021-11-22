@@ -238,7 +238,7 @@ namespace CarReportSystem {
             // 
             // tbReport
             // 
-            this.tbReport.Location = new System.Drawing.Point(88, 129);
+            this.tbReport.Location = new System.Drawing.Point(87, 141);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
             this.tbReport.Size = new System.Drawing.Size(367, 92);

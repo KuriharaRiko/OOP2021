@@ -41,9 +41,9 @@ namespace Pelmanism
             this.labelSec.AutoSize = true;
             this.labelSec.Location = new System.Drawing.Point(12, 9);
             this.labelSec.Name = "labelSec";
-            this.labelSec.Size = new System.Drawing.Size(47, 12);
+            this.labelSec.Size = new System.Drawing.Size(43, 12);
             this.labelSec.TabIndex = 0;
-            this.labelSec.Text = "0秒経過";
+            this.labelSec.Text = "残り6秒";
             // 
             // labelGuidance
             // 

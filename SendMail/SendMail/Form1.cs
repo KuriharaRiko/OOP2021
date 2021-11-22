@@ -28,6 +28,13 @@ namespace SendMail
 
         private void btSend_Click(object sender, EventArgs e)
         {
+            if (tbTo.Text == "" && tbMessage.Text == "")
+            {
+                MessageBox.Show("宛先または本文が入力されていません");
+                return;
+
+            }
+
             if (!Settings.Set)
             {
                 MessageBox.Show("メール送信情報を設定してください");
@@ -47,11 +54,11 @@ namespace SendMail
                 {
                     mailMessage.CC.Add(tbCc.Text);
                 }
-                
+
                 if (tbBcc.Text != " ")
                 {
                     mailMessage.Bcc.Add(tbBcc.Text);
-                }               
+                }
 
                 // 件名（タイトル）
                 mailMessage.Subject = tbTitle.Text;
@@ -61,7 +68,7 @@ namespace SendMail
                 // SMTPを使ってメールを送信する
                 SmtpClient smtpClient = new SmtpClient();
                 // メール送信のための認証情報を設定(ユーザー名、パスワード)
-                smtpClient.Credentials 
+                smtpClient.Credentials
                     = new NetworkCredential(settings.MailAddr, settings.Pass);
                 smtpClient.Host = settings.Host;
                 smtpClient.Port = settings.Port;
@@ -71,34 +78,27 @@ namespace SendMail
                 // 送信完了のイベントハンドラの登録
                 smtpClient.SendCompleted += SmtpClient_SendCompleted;
 
+                btSend.Enabled = false;
+
                 string userState = "SendMail";
                 smtpClient.SendAsync(mailMessage, userState);
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
-            if (tbTo.Text == " " && tbMessage.Text == " ")
-            {
-                MessageBox.Show("宛先もしは本文を書いてください", "エラー",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
         }
 
         
-
         // 送信が完了すると呼ばれるコールバックメソッド
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
         {
             if (e.Error != null)
             {
                 MessageBox.Show(e.Error.Message);
-            }
-            
-            else
-            {
+            }else{
                 MessageBox.Show("送信完了");
+                btSend.Enabled = true;
             }
 
             foreach (var c in this.Controls)
@@ -138,8 +138,6 @@ namespace SendMail
                     ((TextBox)c).Text = String.Empty;
                 }
             }
-        }
-
-        
+        }        
     }
 }

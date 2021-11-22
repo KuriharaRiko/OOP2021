@@ -28,14 +28,23 @@ namespace SendMail
 
         private void btSend_Click(object sender, EventArgs e)
         {
-            if (tbTo.Text == "" && tbMessage.Text == "")
+            if (tbTo.Text == "")
             {
-                MessageBox.Show("宛先または本文が入力されていません");
+                MessageBox.Show("宛先が入力されていません");
                 return;
-
+            }
+            else if (tbMessage.Text == "")
+            {
+                MessageBox.Show("本文が入力されていません");
+                return;
+            }
+            else if (tbMessage.Text == null)
+            {
+                MessageBox.Show("本文が入力されていません");
+                return;
             }
 
-            if (!Settings.Set)
+                if (!Settings.Set)
             {
                 MessageBox.Show("メール送信情報を設定してください");
                 return;
